@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "{= name =}/{= name =}_export.hpp"
+#include <{= name =}/{= name =}_export.hpp>
 
 /**
  * A note about the MSVC warning C4251:

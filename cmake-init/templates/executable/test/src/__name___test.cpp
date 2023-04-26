@@ -1,6 +1,6 @@
 {% if pm %}#include <catch2/catch{% if catch3 %}_test_macros{% end %}.hpp>
 
-{% end %}#include "lib.hpp"
+{% end %}#include <{= name =}/lib.hpp>
 {% if pm %}
 TEST_CASE("Name is {= name =}", "[library]")
 {

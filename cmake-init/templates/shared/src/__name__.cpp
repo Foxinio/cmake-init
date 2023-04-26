@@ -1,6 +1,6 @@
 #include <string>
 
-#include "{= name =}/{= name =}.hpp"{% if pm %}
+#include <{= name =}/{= name =}.hpp>{% if pm %}
 
 #include <fmt/core.h>{% end %}
 

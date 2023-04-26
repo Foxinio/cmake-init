@@ -1,4 +1,4 @@
-#include "lib.hpp"{% if pm %}
+#include <{= name =}/lib.hpp>{% if pm %}
 
 #include <fmt/core.h>{% end %}
 

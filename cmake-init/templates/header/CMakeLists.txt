@@ -34,6 +34,9 @@ target_compile_features({= name =}_{= name =} INTERFACE cxx_std_{= std =}){% if 
 find_package(fmt REQUIRED)
 target_link_libraries({= name =}_{= name =} INTERFACE fmt::fmt){% end %}
 
+# ---- Declare tests ----
+add_subdirectory(test)
+
 # ---- Install rules ----
 
 if(NOT CMAKE_SKIP_INSTALL_RULES)

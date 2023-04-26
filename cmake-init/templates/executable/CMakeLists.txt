@@ -14,33 +14,13 @@ include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
 # ---- Declare library ----
-
-add_library(
-    {= name =}_lib OBJECT
-    source/lib.cpp
-)
-
-target_include_directories(
-    {= name =}_lib ${warning_guard}
-    PUBLIC
-    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
-)
-
-target_compile_features({= name =}_lib PUBLIC cxx_std_{= std =}){% if pm %}
-
-find_package(fmt REQUIRED)
-target_link_libraries({= name =}_lib PRIVATE fmt::fmt){% end %}
+add_subdirectory(lib)
 
 # ---- Declare executable ----
+add_subdirectory(src)
 
-add_executable({= name =}_exe source/main.cpp)
-add_executable({= name =}::exe ALIAS {= name =}_exe)
-
-set_property(TARGET {= name =}_exe PROPERTY OUTPUT_NAME {= name =})
-
-target_compile_features({= name =}_exe PRIVATE cxx_std_{= std =})
-
-target_link_libraries({= name =}_exe PRIVATE {= name =}_lib)
+# ---- Declare tests ----
+add_subdirectory(test)
 
 # ---- Install rules ----
 

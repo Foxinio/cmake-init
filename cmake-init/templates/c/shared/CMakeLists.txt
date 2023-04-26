@@ -17,7 +17,7 @@ include(cmake/variables.cmake)
 
 add_library(
     {= name =}_{= name =}
-    source/{= name =}.c
+    src/{= name =}.c
 )
 add_library({= name =}::{= name =} ALIAS {= name =}_{= name =})
 

@@ -17,13 +17,13 @@ include(cmake/variables.cmake)
 
 add_library(
     {= name =}_lib OBJECT
-    source/lib.c
+    src/lib.c
 )
 
 target_include_directories(
     {= name =}_lib ${warning_guard}
     PUBLIC
-    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
 )
 
 target_compile_features({= name =}_lib PUBLIC c_std_{= std =}){% if pm %}
@@ -44,7 +44,7 @@ target_include_directories(
 
 # ---- Declare executable ----
 
-add_executable({= name =}_exe source/main.c)
+add_executable({= name =}_exe src/main.c)
 add_executable({= name =}::exe ALIAS {= name =}_exe)
 
 set_property(TARGET {= name =}_exe PROPERTY OUTPUT_NAME {= name =})

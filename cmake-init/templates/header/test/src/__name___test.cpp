@@ -1,4 +1,4 @@
-#include "{= name =}/{= name =}.hpp"
+#include <{= name =}/{= name =}.hpp>
 {% if pm %}
 #include <catch2/catch{% if catch3 %}_test_macros{% end %}.hpp>
 

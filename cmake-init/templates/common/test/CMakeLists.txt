@@ -19,29 +19,35 @@ endif(){% end %}{% if pm %}{% if exe %}
 
 find_package(Catch2 REQUIRED)
 include(Catch){% end %}
+find_package(ut REQUIRED)
 
 # ---- Tests ----
 
 add_executable({% if c_header and pm %}
     {% end %}{= name =}_test{% if c_header and pm %}
-   {% end %} source/{= name =}_test.c{% if cpp or pm %}pp{% if c_header %}
-    source/header_impl.c
+   {% end %} src/{= name =}_test.c{% if cpp or pm %}pp{% if c_header %}
+    src/header_impl.c
 {% end %}{% end %}){% if c_header and not pm %}
 set_property(
-    SOURCE source/{= name =}_test.c PROPERTY
+    SOURCE src/{= name =}_test.c PROPERTY
     COMPILE_DEFINITIONS {= uc_name =}_IMPLEMENTATION
 ){% end %}
 target_link_libraries({% if pm %}
     {% end %}{= name =}_test PRIVATE{% if pm %}
    {% end %} {= name =}{% if exe %}_lib{% else %}::{= name =}{% end %}{% if pm %}
     Catch2::Catch2WithMain
-{% end %})
+{% end %}
+    Boost::ut)
 target_compile_features({= name =}_test PRIVATE {% if c and pm %}{% if header %}c_std_{= std =} {% end %}cxx_std_11{% else %}c{% if cpp %}xx{% end %}_std_{= std =}{% end %})
 {% if pm %}
 catch_discover_tests({= name =}_test){% else %}
 add_test(NAME {= name =}_test COMMAND {= name =}_test){% if lib %}
 windows_set_path({= name =}_test {= name =}::{= name =}){% end %}{% end %}
 
+target_link_libraries({= name =}_test PRIVATE Boost::ut)
+
+
 # ---- End-of-file commands ----
 
-add_folders(Test)
+## Maybe important. Commented out because causes build errors
+# add_folders(Test)

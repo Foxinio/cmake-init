@@ -1,12 +1,12 @@
 set(
     FORMAT_PATTERNS
-    source/*.c{% if cpp %}pp{% end %} source/*.h{% if cpp %}pp{% end %}
+    src/*.c{% if cpp %}pp{% end %} src/*.h{% if cpp %}pp{% end %}
     include/*.h{% if cpp %}pp{% end %}
     test/*.c{% if cpp %}pp{% end %} test/*.h{% if cpp %}pp{% end %}{% if cpp_examples %}
     example/*.cpp example/*.hpp{% end %}{% if c_examples %}
     example/*.c example/*.h{% end %}
     CACHE STRING
-    "; separated patterns relative to the project source dir to format"
+    "; separated patterns relative to the project src dir to format"
 )
 
 set(FORMAT_COMMAND clang-format CACHE STRING "Formatter to use")
